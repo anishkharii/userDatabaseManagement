@@ -1,0 +1,113 @@
+body{
+    background-color:#f4f4f4;
+    text-align:center;
+    margin:0;
+    padding:0;
+    font-family: 'Montserrat', sans-serif;
+}
+.head{
+    position:relative;
+    width:100%;
+    padding:15px 0;
+    margin-bottom:3rem;
+    background-color: rgb(187, 25, 25);
+    color:#fff;
+}
+.form-container{
+    background-color: #fff;
+    position:relative;
+    width:50%;
+    margin:0 auto;
+    border-radius:5px;
+   padding:1rem;
+}
+.form-container h2{
+    text-decoration:underline;
+}
+
+input[type=text],input[type=email], input[type=password]{
+    display:block;
+    margin:1rem auto;
+    margin-top:5px;
+    padding:6px 2px;
+    width:200px;
+    border:2px solid #ccc;
+    transition:.25s;
+    outline:none;
+    border-radius:2px;
+}
+input[type=radio]{
+    margin:1rem ;
+}
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus{
+    border:2px solid rgb(76, 76, 124)
+}
+input[type=text]:hover, input[type=email]:hover ,input[type=password]:hover{
+    border:2px solid rgb(76, 76, 124)
+}
+.primary-btn{
+    outline:none;
+    padding:8px 18px;
+    background-color: rgb(39, 105, 227);
+    border:none;
+    color:#fff;
+}
+.primary-btn:hover{
+    background-color:rgb(57, 124, 248);
+}
+.register-btn{
+    margin:2rem 0;
+    text-decoration:none;
+}
+footer{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:auto;
+    padding:2rem 0;
+    color:#fff;
+    background-color:rgb(187, 25, 25);
+}
+
+/* main home page css */
+
+.main-head{
+    background-color:#e6dede;
+    border-radius:5px;
+    margin:3rem ;
+    padding:.5rem 2rem;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+}
+.warning-btn{
+    background-color: #cb1515;
+    text-decoration: none;
+}
+.warning-btn:hover{
+    background-color: #dc3838;
+}
+
+.user-details{
+    background-color:#f4eded;
+    margin:1rem auto;
+}
+thead{
+    background-color:#e6dede;
+}
+td{
+    padding:5px 1rem;
+    margin:0;
+}
+ tbody tr:hover{
+    background-color:#bbb3b3;
+}
+.clearfix {
+    width:200px;
+    margin:1rem auto;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+}

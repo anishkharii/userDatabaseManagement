@@ -1,0 +1,14 @@
+<%- include("partials/header") -%>
+
+<form method="post" action="/register" class="form-container">
+    <h2>REGISTER</h2>
+    <label for="userID">New User ID</label>
+    <input type="text" name="userID"autofocus>
+    <br>
+    <label for="passKey">Pass Key(Strong)</label>
+    <input type="password" name="passKey" >
+    <br>
+    <button class="primary-btn" type="submit">Register</button>
+</form>
+
+<%- include("partials/footer") -%>

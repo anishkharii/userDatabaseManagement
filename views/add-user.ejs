@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+<form method="post" action="">
+    <div class="container">
+        <h1>New User Details</h1>
+        <hr>
+    
+        <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required autocomplete="false" autofocus>
+    
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" required autocomplete="false">
+    
+        <label for="gender"><b>Gender</b></label><br>
+        <input type="radio" name="gender" value="male" >Male
+        <input type="radio" name="gender" value="female" >Female
+        <br>
+        <label for="status"><b>Status</b></label><br>
+        <input type="radio" name="status" value="active">Active
+        <input type="radio" name="status" value="inactive">Inactive
+        <br>
+    
+    
+       <div class="clearfix">
+          <a  class=" primary-btn warning-btn" href="/dashboard/<%=admin%>">Cancel</a>
+          <button type="submit" class="primary-btn ">Add User</button>
+        </div>
+      </div>
+</form>
+
+<%- include("partials/footer") -%>
