@@ -15,11 +15,9 @@ body{
 }
 .form-container{
     background-color: #fff;
-    position:relative;
-    width:50%;
-    margin:0 auto;
+    margin:5rem;
     border-radius:5px;
-   padding:1rem;
+    padding:1rem;
 }
 .form-container h2{
     text-decoration:underline;
@@ -30,7 +28,7 @@ input[type=text],input[type=email], input[type=password]{
     margin:1rem auto;
     margin-top:5px;
     padding:6px 2px;
-    width:200px;
+    width:40%;
     border:2px solid #ccc;
     transition:.25s;
     outline:none;
@@ -55,8 +53,12 @@ input[type=text]:hover, input[type=email]:hover ,input[type=password]:hover{
 .primary-btn:hover{
     background-color:rgb(57, 124, 248);
 }
+hr{
+    border-bottom:1px solid black;
+    margin:2rem;
+}
 .register-btn{
-    margin:2rem 0;
+    margin:5rem auto;
     text-decoration:none;
 }
 footer{

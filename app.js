@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname +"/public"));
 
-const url = process.env.MONGO_URI;
+const url = process.env.MONGO_URI ;
 mongoose.connect(url);
 const AdminSchema = new mongoose.Schema({
     userID:{
@@ -19,10 +19,6 @@ const AdminSchema = new mongoose.Schema({
         required:true
     },
     passKey:{
-        type:String,
-        required:true
-    },
-    accessDomain:{
         type:String,
         required:true
     }
@@ -47,11 +43,11 @@ const User = new mongoose.model("User",UserSchema);
 app.route("/")
 .get((req,res)=>{
     res.render("login");
+
 })
 .post((req,res)=>{
     Admin.findOne({userID: req.body.userID}).then((foundAdmin)=>{
         if(foundAdmin){
-            console.log(foundAdmin);
             bcrypt.compare(req.body.passKey, foundAdmin.passKey, function(err, result){
                 res.redirect("/dashboard/"+foundAdmin.userID);
             });
@@ -69,7 +65,6 @@ app.route("/dashboard/:accessAdmin")
     Admin.findOne({userID:req.params.accessAdmin}).then((foundAdmin)=>{
         if(foundAdmin){
             User.find({}).then((foundUsers)=>{
-                console.log(foundAdmin)
                 res.render("home",{
                         admin:req.params.accessAdmin,
                         users:foundUsers
@@ -126,8 +121,7 @@ app.route("/register")
     bcrypt.hash(req.body.passKey, saltRounds, function(err, hash){
         const newAdmin = new Admin({
             userID:req.body.userID,
-            passKey:hash,
-            accessDomain:req.body.userID+"-"+hash
+            passKey:hash
         });
         newAdmin.save().then(()=>{
             console.log("Added");
