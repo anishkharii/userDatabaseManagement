@@ -4,14 +4,16 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const methodOverride = require('method-override');
 
 app = express();
 const saltRounds = 10;
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname +"/public"));
+app.use(methodOverride('_method'));
 
-const url = process.env.MONGO_URI ;
+const url = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/userManagementDB" ;
 mongoose.connect(url);
 const AdminSchema = new mongoose.Schema({
     userID:{
@@ -68,7 +70,7 @@ app.route("/dashboard/:accessAdmin")
                 res.render("home",{
                         admin:req.params.accessAdmin,
                         users:foundUsers
-                });
+                }); 
             });
         }
         else{
@@ -110,6 +112,42 @@ app.route("/dashboard/:accessAdmin/newUser")
     })
     
 });
+app.route("/dashboard/:admin/:userID")
+.get((req,res)=>{
+    Admin.findOne({userID:req.params.admin}).then((foundAdmin)=>{
+        User.findOne({_id:req.params.userID}).then((foundUser)=>{
+            res.render("update-user",{admin:foundAdmin,user:foundUser});
+        })
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+.put((req,res)=>{
+    Admin.findOne({userID:req.params.admin}).then((foundAdmin)=>{
+        User.replaceOne(
+            {_id:req.params.userID},
+            {
+                name:req.body.name,
+                email:req.body.email,
+                gender:req.body.gender,
+                status:req.body.status,
+                updatedBy:foundAdmin
+            }
+            ).then((updatedUser)=>{
+                console.log(updatedUser);
+                res.redirect("/dashboard/"+req.params.admin);
+            })
+    })
+    
+})
+.delete((req,res)=>{
+    Admin.findOne({userID:req.params.admin}).then((foundAdmin)=>{
+        User.findByIdAndDelete({_id:req.params.userID}).then(()=>{
+            console.log("deleted");
+            res.redirect("/dashboard/"+req.params.admin);
+        })
+    })
+})
 
 app.route("/register")
 .get((req,res)=>{

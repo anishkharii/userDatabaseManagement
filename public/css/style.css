@@ -102,6 +102,9 @@ td{
     padding:5px 1rem;
     margin:0;
 }
+tr{
+    transition: 0.2s;
+}
  tbody tr:hover{
     background-color:#bbb3b3;
 }
@@ -112,4 +115,20 @@ td{
     flex-direction:row;
     align-items:center;
     justify-content:space-around;
+}
+.edit-btn{
+    color:#454545;
+    font-size:1.5rem;
+    margin:0 0.25rem;
+    outline:none;
+    background-color: transparent;
+    border:none;
+}
+.edit-btn:nth-child(1):hover{
+    color:#fff;
+}
+
+.null-form{
+    border:none;
+    display:inline;
 }

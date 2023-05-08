@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+<form  method="post" action="/dashboard/<%=admin.userID%>/<%=user._id%>?_method=PUT">
+    <div class="container">
+        <h1>Update User </h1>
+        <hr>
+    
+        <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" value="<%=user.name%>" required autocomplete="off">
+    
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" value= "<%=user.email%>" required autocomplete="off">
+    
+        <label for="gender"><b>Gender</b></label><br>
+        <input type="radio" name="gender" value="male" <%= user.gender=="male" ? "checked":"" %> disabled>Male
+        <input type="radio" name="gender" value="female" <%= user.gender=="female" ? "checked":"" %> disabled>Female
+        <input type="hidden" name="gender" value="<%= user.gender=="male" ? "male":"female" %>" >
+        <br>
+        <label for="status"><b>Status</b></label><br>
+        <input type="radio" name="status" value="active" <%= user.status=="active" ? "checked":"" %>>Active
+        <input type="radio" name="status" value="inactive" <%= user.status=="inactive" ? "checked":"" %>>Inactive
+        <br>
+    
+    
+       <div class="clearfix">
+          <a  class=" primary-btn warning-btn" href="/dashboard/<%=admin%>">Cancel</a>
+          <button type="submit" class="primary-btn " id="updateBtn">Update</button>
+        </div>
+      </div>
+</form>
+<%- include("partials/footer") -%>

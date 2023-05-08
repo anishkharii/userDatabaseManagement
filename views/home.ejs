@@ -17,22 +17,29 @@
             <td>Email</td>
             <td>Gender</td>
             <td>Status</td>
-            <td>Added By</td>
+            <td>Last Updated</td>
             <td>Edit</td>
         </tr>
      </thead>
      <tbody>
-        <% users.forEach((user)=>{%>
+        
+        <% for(var i=0;i<users.length;i++){ %>
             <tr>
-                <td><%=user._id%></td>
-                <td><%=user.name%></td>
-                <td><%=user.email%></td>
-                <td><%=user.gender%></td>
-                <td><%=user.status%></td>
-                <td><%=user.updatedBy.userID%></td>
-                <td>Edit</td>
+                <td><%=i+1%></td>
+                <td><%=users[i].name%></td>
+                <td><%=users[i].email%></td>
+                <td><%=users[i].gender%></td>
+                <td><%=users[i].status%></td>
+                <td><%=users[i].updatedBy.userID%></td>
+                <td>
+                    <a href="/dashboard/<%=admin%>/<%=users[i]._id%>" class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form class="null-form" method="post" action="/dashboard/<%=admin%>/<%=users[i]._id%>/?_method=DELETE">
+                        <button type="submit" class="edit-btn"><i class="fa-solid fa-square-minus"></i></button>
+                    </form>
+                    
+                </td>
             </tr>
-        <% })%>
+        <% }%>
         
     </tbody>
 </table>
