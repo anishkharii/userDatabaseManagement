@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const methodOverride = require('method-override');
 
 app = express();
@@ -13,7 +12,7 @@ app.set("view engine","ejs");
 app.use(express.static(__dirname +"/public"));
 app.use(methodOverride('_method'));
 
-const url = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/userManagementDB" ;
+const url = process.env.MONGO_URI;
 mongoose.connect(url);
 const AdminSchema = new mongoose.Schema({
     userID:{
@@ -49,11 +48,8 @@ app.route("/")
 })
 .post((req,res)=>{
     Admin.findOne({userID: req.body.userID}).then((foundAdmin)=>{
-        if(foundAdmin){
-            bcrypt.compare(req.body.passKey, foundAdmin.passKey, function(err, result){
-                res.redirect("/dashboard/"+foundAdmin.userID);
-            });
-            
+        if(foundAdmin && (req.body.passKey ==  foundAdmin.passKey)){
+            res.redirect("/dashboard/"+foundAdmin.userID);
         }
         else{
             res.send("Wrong userID or passKey");
@@ -155,17 +151,15 @@ app.route("/register")
 })
 .post((req,res)=>{
 
-
-    bcrypt.hash(req.body.passKey, saltRounds, function(err, hash){
         const newAdmin = new Admin({
             userID:req.body.userID,
-            passKey:hash
+            passKey:req.body.passKey
         });
         newAdmin.save().then(()=>{
             console.log("Added");
             res.redirect("/");
         })
-    });
+    
     
     
 })
